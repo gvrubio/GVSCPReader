@@ -34,6 +34,11 @@ android {
     }
 
     buildTypes {
+        debug {
+            // Installs next to the release app instead of replacing it (separate data).
+            applicationIdSuffix = ".debug"
+            versionNameSuffix = "-debug"
+        }
         release {
             isMinifyEnabled = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")

@@ -3,6 +3,22 @@
 An Android reader for the SCP Wiki (scp-wiki.wikidot.com). It loads the live wiki
 and gives it a dark reading theme.
 
+**[Download the latest APK](https://github.com/gvrubio/GVSCPReader/releases/latest)** (Android 8.0+)
+
+## Screenshots
+
+![The five reader themes: Dim, AMOLED, Sepia night, Red light and Terminal](docs/screenshots/themes.webp)
+
+| Reader | SCP list | Settings |
+|:---:|:---:|:---:|
+| <img src="docs/screenshots/reader.webp" width="250" alt="SCP-173 in the Dim theme, fullscreen with clock and battery"> | <img src="docs/screenshots/list.webp" width="250" alt="Series I list with read marks and completion"> | <img src="docs/screenshots/settings.webp" width="250" alt="Reader settings panel"> |
+| Clean article view, fullscreen with time and battery | Series lists with search, read marks and progress | Themes, text size, tap paging and more |
+
+| Wide tables | Classification headers | Continue reading |
+|:---:|:---:|:---:|
+| <img src="docs/screenshots/table.webp" width="250" alt="A wide table scrolling sideways on its own"> | <img src="docs/screenshots/header.webp" width="250" alt="SCP-4999 classification header"> | <img src="docs/screenshots/next.webp" width="250" alt="Continue reading card at the end of SCP-173"> |
+| Tables scroll sideways; the page never does | Designed headers keep their layout | Jump to the next article from the end of the page |
+
 ## Build
 
     JAVA_HOME=/usr/lib/jvm/java-17-openjdk ./gradlew assembleRelease
