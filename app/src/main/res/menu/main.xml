@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/action_goto" android:icon="@drawable/ic_search"
+        android:title="@string/go_to" app:showAsAction="always" app:iconTint="@color/text" />
+    <item android:id="@+id/action_settings" android:icon="@drawable/ic_tune"
+        android:title="@string/settings" app:showAsAction="always" app:iconTint="@color/text" />
+    <item android:id="@+id/action_fullscreen" android:checkable="true" android:title="@string/fullscreen" />
+    <item android:id="@+id/action_bookmarks" android:title="@string/bookmarks" />
+    <item android:id="@+id/action_history" android:title="@string/history" />
+    <item android:id="@+id/action_expand" android:title="@string/expand_all" />
+    <item android:id="@+id/action_home" android:title="@string/home" />
+    <item android:id="@+id/action_share" android:title="@string/share" />
+    <item android:id="@+id/action_browser" android:title="@string/open_browser" />
+    <item android:id="@+id/action_export" android:title="@string/export_progress" />
+    <item android:id="@+id/action_import" android:title="@string/import_progress" />
+    <item android:id="@+id/action_donate" android:title="@string/donate" />
+</menu>

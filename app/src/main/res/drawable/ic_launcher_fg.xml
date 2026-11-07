@@ -1,0 +1,11 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp" android:height="108dp"
+    android:viewportWidth="108" android:viewportHeight="108">
+    <!-- Containment ring with three inward arrows, plus a crescent moon for "night" -->
+    <path android:strokeColor="#E57368" android:strokeWidth="5" android:fillColor="#00000000"
+        android:pathData="M54,30a24,24 0,1 1,0 48a24,24 0,1 1,0 -48z"/>
+    <path android:fillColor="#E57368" android:pathData="M51,26h6v14l5,-4v6l-8,6 -8,-6v-6l5,4z"/>
+    <path android:fillColor="#E57368" android:pathData="M30.5,72.6l-3,-5.2 12.1,-7 -6,-2.3 5.2,-3 9.2,3.9 -1.2,9.9 -5.2,3 1,-6.3z"/>
+    <path android:fillColor="#E57368" android:pathData="M80.5,67.4l-3,5.2 -12.1,-7 1,6.3 -5.2,-3 -1.2,-9.9 9.2,-3.9 5.2,3 -6,2.3z"/>
+    <path android:fillColor="#D6D6D6" android:pathData="M58,47a8,8 0,1 0,6 13a6.5,6.5 0,1 1,-6 -13z"/>
+</vector>

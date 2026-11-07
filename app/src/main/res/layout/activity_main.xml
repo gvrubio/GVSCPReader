@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/bg"
+            app:titleTextAppearance="@style/TextAppearance.Material3.TitleMedium"
+            app:subtitleTextAppearance="@style/TextAppearance.Material3.LabelSmall"
+            app:titleTextColor="@color/text" />
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/loadProgress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indeterminate="false"
+            android:visibility="invisible"
+            app:indicatorColor="@color/accent_soft"
+            app:trackColor="@android:color/transparent"
+            app:trackThickness="2dp" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/swipe"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.gv.scpreader.ReaderWebView
+                    android:id="@+id/web"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/bg" />
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+            <!-- Page-turn tap areas, shown briefly while their size is being adjusted -->
+            <View
+                android:id="@+id/tapZoneLeft"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="start"
+                android:visibility="gone" />
+
+            <View
+                android:id="@+id/tapZoneRight"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:visibility="gone" />
+
+            <!-- Reading progress, pinned to the bottom edge of the page area -->
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/readProgress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:max="1000"
+                app:indicatorColor="@color/accent"
+                app:trackColor="#00000000"
+                app:trackThickness="3dp" />
+        </FrameLayout>
+
+        <!-- Shown in fullscreen, replacing the hidden system status bar -->
+        <LinearLayout
+            android:id="@+id/statusStrip"
+            android:layout_width="match_parent"
+            android:layout_height="22dp"
+            android:background="@color/surface"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="16dp"
+            android:paddingTop="4dp"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/clock"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif-medium"
+                android:textColor="@color/text"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/readPct"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_muted"
+                android:textSize="11sp" />
+
+            <TextView
+                android:id="@+id/battery"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawablePadding="3dp"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center_vertical|end"
+                android:textColor="@color/text"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/bottomBar"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@color/surface"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="4dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnPrev"
+                style="@style/Widget.Material3.Button.TextButton.Icon"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.4"
+                android:contentDescription="@string/prev"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/text"
+                app:icon="@drawable/ic_prev"
+                app:iconTint="@color/text" />
+
+            <ImageButton
+                android:id="@+id/btnList"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/list"
+                android:src="@drawable/ic_list"
+                app:tint="@color/text" />
+
+            <ImageButton
+                android:id="@+id/btnRandom"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/random"
+                android:src="@drawable/ic_shuffle"
+                app:tint="@color/text" />
+
+            <ImageButton
+                android:id="@+id/btnBookmark"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/bookmark"
+                android:src="@drawable/ic_star_border"
+                app:tint="@color/text" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnNext"
+                style="@style/Widget.Material3.Button.TextButton.Icon"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.4"
+                android:contentDescription="@string/next"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/text"
+                app:icon="@drawable/ic_next"
+                app:iconGravity="end"
+                app:iconTint="@color/text" />
+        </LinearLayout>
+    </LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

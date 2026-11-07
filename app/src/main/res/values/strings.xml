@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SCP Night Reader</string>
+    <string name="prev">Previous</string>
+    <string name="next">Next</string>
+    <string name="list">SCP list</string>
+    <string name="random">Random</string>
+    <string name="bookmark">Bookmark</string>
+    <string name="go_to">Go to SCP</string>
+    <string name="settings">Reader settings</string>
+    <string name="bookmarks">Bookmarks</string>
+    <string name="history">History</string>
+    <string name="home">Wiki front page</string>
+    <string name="share">Share</string>
+    <string name="open_browser">Open in browser</string>
+    <string name="expand_all">Expand all collapsibles</string>
+    <string name="search_hint">Number or title…</string>
+    <string name="hide_read">Hide read</string>
+    <string name="refresh">Refresh list</string>
+    <string name="clear">Clear</string>
+    <string name="fullscreen">Fullscreen</string>
+    <string name="donate">Donate ❤️</string>
+    <string name="export_progress">Export progress</string>
+    <string name="import_progress">Import progress</string>
+</resources>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            style="@style/SheetLabel"
+            android:text="Theme" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/themeChips"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:selectionRequired="true"
+            app:singleSelection="true" />
+
+        <TextView
+            android:id="@+id/sizeLabel"
+            style="@style/SheetLabel"
+            android:text="Text size" />
+
+        <com.google.android.material.slider.Slider
+            android:id="@+id/sizeSlider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:stepSize="5"
+            android:valueFrom="70"
+            android:valueTo="200" />
+
+        <TextView
+            android:id="@+id/lineLabel"
+            style="@style/SheetLabel"
+            android:text="Line spacing" />
+
+        <com.google.android.material.slider.Slider
+            android:id="@+id/lineSlider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:stepSize="0.1"
+            android:valueFrom="1.2"
+            android:valueTo="2.2" />
+
+        <TextView
+            style="@style/SheetLabel"
+            android:text="Font" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/fontChips"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:selectionRequired="true"
+            app:singleSelection="true" />
+
+        <com.google.android.material.materialswitch.MaterialSwitch
+            android:id="@+id/swFullscreen"
+            style="@style/SheetSwitch"
+            android:text="Fullscreen (time &amp; battery in the bottom bar)" />
+
+        <com.google.android.material.materialswitch.MaterialSwitch
+            android:id="@+id/swStrict"
+            style="@style/SheetSwitch"
+            android:text="Force dark on custom page styles" />
+
+        <com.google.android.material.materialswitch.MaterialSwitch
+            android:id="@+id/swDimImages"
+            style="@style/SheetSwitch"
+            android:text="Dim images" />
+
+        <com.google.android.material.materialswitch.MaterialSwitch
+            android:id="@+id/swExpand"
+            style="@style/SheetSwitch"
+            android:text="Auto-expand collapsibles (spoilers!)" />
+
+        <com.google.android.material.materialswitch.MaterialSwitch
+            android:id="@+id/swVolume"
+            style="@style/SheetSwitch"
+            android:text="Volume keys turn the page" />
+
+        <com.google.android.material.materialswitch.MaterialSwitch
+            android:id="@+id/swTapPaging"
+            style="@style/SheetSwitch"
+            android:text="Tap left / right edge to turn the page" />
+
+        <TextView
+            android:id="@+id/tapZoneLabel"
+            style="@style/SheetLabel"
+            android:layout_marginTop="0dp" />
+
+        <com.google.android.material.slider.Slider
+            android:id="@+id/tapZoneSlider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:stepSize="5"
+            android:valueFrom="10"
+            android:valueTo="45" />
+
+        <com.google.android.material.materialswitch.MaterialSwitch
+            android:id="@+id/swAutoNext"
+            style="@style/SheetSwitch"
+            android:text="Show 'Next' card at end of page" />
+
+        <com.google.android.material.materialswitch.MaterialSwitch
+            android:id="@+id/swKeepOn"
+            style="@style/SheetSwitch"
+            android:text="Keep screen on while reading" />
+
+        <com.google.android.material.materialswitch.MaterialSwitch
+            android:id="@+id/swAds"
+            style="@style/SheetSwitch"
+            android:text="Block ads &amp; trackers" />
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>
