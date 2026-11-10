@@ -78,11 +78,13 @@ object ReaderStyle {
               position:static!important}
             #main-content{padding:14px 18px 40px!important}
             #main-content>*{zoom:${zoomPercent / 100.0}}
-            /* The classification header is a fixed design: keep it at its natural size and wrapping. */
-            html body #page-content .anom-bar-container,html body #page-content .gv-fixed-design{
+            /* Classification headers (anom-bar, baseHeading) are fixed designs: keep their natural size and wrapping. */
+            html body #page-content .anom-bar-container,html body #page-content .baseHeading,
+            html body #page-content .gv-fixed-design{
               zoom:${"%.4f".format(java.util.Locale.US, 100.0 / zoomPercent)}}
             html body #page-content .gv-fixed-design .gv-fixed-design{zoom:1}
-            html body #page-content .anom-bar-container,html body #page-content .anom-bar-container *{
+            html body #page-content .anom-bar-container,html body #page-content .anom-bar-container *,
+            html body #page-content .baseHeading,html body #page-content .baseHeading *{
               overflow-wrap:normal!important;word-break:normal!important}
             html,body{overflow-x:hidden!important}
             #extra-div-1,#extra-div-2,#extra-div-3,#extra-div-4,#extra-div-5,#extra-div-6,
@@ -95,7 +97,7 @@ object ReaderStyle {
               font-weight:600!important;border:0!important;margin:.2em 0 .7em!important;padding:0!important}
             $pc{font-family:$font!important;color:${c.text}!important;font-size:1em!important;line-height:$lh!important;
               word-wrap:break-word;overflow-wrap:anywhere}
-            $pc p:not(.anom-bar-container *),$pc li{line-height:$lh!important}
+            $pc p:not(.anom-bar-container *):not(.baseHeading *),$pc li{line-height:$lh!important}
             $pc h1,$pc h2,$pc h3,$pc h4,$pc h5,$pc h6{color:${c.accent}!important;font-family:$font!important;line-height:1.3!important}
             $pc a,$pc a:visited,$pc a span{color:${c.link}!important}
             $pc a.newpage{color:${c.muted}!important}
@@ -145,11 +147,29 @@ object ReaderStyle {
         """.trimIndent().replace(Regex("\\s*\n\\s*"), "\n")
     }
 
-    // Android WebView blocks http:// media on https:// pages, and older articles link images that way.
+    // Android WebView blocks http:// media on https:// pages, and older articles link images that way,
+    // in tags and in CSS (e.g. SCP-7016's classification icons). Rewrite them to https://.
     private const val UPGRADE_MEDIA_JS = """
         [].forEach.call(document.querySelectorAll('img[src^="http:"],source[src^="http:"],video[src^="http:"],audio[src^="http:"]'), function(e){
           e.src = e.getAttribute('src').replace(/^http:/, 'https:');
         });
+        var fixUrl = function(v){ return v.replace(/url\((["']?)http:/g, 'url(${'$'}1https:'); };
+        [].forEach.call(document.querySelectorAll('[style*="http:"]'), function(e){
+          e.setAttribute('style', fixUrl(e.getAttribute('style')));
+        });
+        var fixRules = function(rules){
+          [].forEach.call(rules, function(r){
+            if (r.cssRules) fixRules(r.cssRules);
+            var st = r.style;
+            if (!st || st.cssText.indexOf('http:') < 0) return;
+            for (var i = 0; i < st.length; i++) {
+              var p = st[i], v = st.getPropertyValue(p);
+              if (v.indexOf('http:') >= 0) st.setProperty(p, fixUrl(v), st.getPropertyPriority(p));
+            }
+          });
+        };
+        // Cross-origin sheets can't be read; those are skipped.
+        [].forEach.call(document.styleSheets, function(s){ try { fixRules(s.cssRules); } catch (e) {} });
     """
 
     /**
@@ -216,8 +236,19 @@ object ReaderStyle {
               if ((pos !== 'absolute' && pos !== 'fixed') || !e.textContent.trim()) return;
               var box = e.offsetParent;
               if (!box || box === pc || !pc.contains(box) || box.tagName !== 'DIV') return;
-              if (box.closest('.anom-bar-container, .gv-fixed-design')) return;
+              if (box.closest('.anom-bar-container, .baseHeading, .gv-fixed-design')) return;
               if (box.textContent.length < 600) box.classList.add('gv-fixed-design');
+            });
+            // Text with a near-zero line height only works on one line: once it wraps, every line
+            // is drawn at the same height (e.g. SCP-7016's "CONFIDENTIAL"). Give those normal spacing.
+            [].forEach.call(pc.querySelectorAll('*'), function(e){
+              var cs = getComputedStyle(e), lh = parseFloat(cs.lineHeight);
+              if (!(lh < parseFloat(cs.fontSize) * 0.5)) return;
+              var r = document.createRange(); r.selectNodeContents(e);
+              var q = r.getClientRects();
+              for (var i = 1; i < q.length; i++) {
+                if (q[i].width > 1 && q[i].left < q[i - 1].left) { e.style.setProperty('line-height', 'normal', 'important'); return; }
+              }
             });
           };
           apply();

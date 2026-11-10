@@ -51,6 +51,7 @@ class ReaderStyleTest {
             File(out, "start_z$z.js").writeText(ReaderStyle.documentStartJs(ReaderStyle.css(0, 0, 1.6f, true, true, z)))
         }
         File(out, "start_tap25.js").writeText(ReaderStyle.documentStartJs(ReaderStyle.css(0, 0, 1.6f, true, true), 25))
+        File(out, "start_red140.js").writeText(ReaderStyle.documentStartJs(ReaderStyle.css(3, 0, 1.6f, true, true, 140)))
         File(out, "after.js").writeText(ReaderStyle.afterLoadJs(false, "scp-174", "SCP-174", "Ventriloquist's Dummy"))
     }
 }

@@ -11,8 +11,8 @@ android {
         applicationId = "com.gv.scpreader"
         minSdk = 26
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 2
+        versionName = "1.1"
 
         val showDonate = providers.gradleProperty("showDonate").getOrElse("true").toBoolean()
         buildConfigField("boolean", "SHOW_DONATE", showDonate.toString())
